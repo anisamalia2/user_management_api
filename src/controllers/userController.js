@@ -38,3 +38,19 @@ export const uploadAvatar = async (req, res) => {
     res.status(500).json({ message: "Upload failed", error: err.message });
   }
 };
+
+export const updateUser = async (req, res) => {
+  try {
+    const { id } = req.user; // ID dari token
+    const { username, email } = req.body;
+
+    const result = await pool.query(
+      "UPDATE users SET username = $1, email = $2, updated_at = NOW() WHERE id = $3 RETURNING id, username, email, updated_at",
+      [username, email, id]
+    );
+
+    res.json({ message: "Profile updated", user: result.rows[0] });
+  } catch (err) {
+    res.status(500).json({ message: "Update failed", error: err.message });
+  }
+};

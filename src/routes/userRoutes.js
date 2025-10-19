@@ -7,5 +7,6 @@ const router = express.Router();
 
 router.get("/", verifyToken, getUsers);
 router.post("/avatar", verifyToken, upload.single("file"), uploadAvatar);
+router.put("/update", verifyToken, updateUser);
 
 export default router;
