@@ -7,6 +7,16 @@ dotenv.config();
 export const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+    if (password.length < 6) {
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters" });
+    }
+
     const hashed = await bcrypt.hash(password, 10);
     const query =
       "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id, username, email";
