@@ -1,5 +1,9 @@
 import express from "express";
-import { getUsers, uploadAvatar } from "../controllers/userController.js";
+import {
+  getUsers,
+  uploadAvatar,
+  updateUser,
+} from "../controllers/userController.js";
 import { verifyToken } from "../middleware/auth.js";
 import upload from "../middleware/upload.js";
 
