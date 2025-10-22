@@ -131,8 +131,7 @@ CLOUDINARY_SECRET=your_api_secret
         Authorization: Bearer <token_dari_login>
         ```
       4. Simpan Collection → klik kanan → *Publish Documentation*
-         Salin URL hasil publish dan masukkan ke README:
-         [Lihat Dokumentasi Postman di Sini] : (https://documenter.getpostman.com/view/49159863/2sB3QQK8AC)
+         Lihat Dokumentasi Postman di Sini : (https://documenter.getpostman.com/view/49159863/2sB3QQK8AC)
 
   b. Upload Avatar ke Cloudinary
   
