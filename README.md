@@ -39,7 +39,7 @@ user_management_api/
 # Instalasi & Menjalankan Server
 ## 1. Clone Repository
 ```bash
-git clone <URL_REPOSITORI_KAMU>
+git clone (https://github.com/anisamalia2/user_management_api)
 cd user_management_api
 ````
 ## 2. Instal Library
