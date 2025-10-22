@@ -123,15 +123,15 @@ CLOUDINARY_SECRET=your_api_secret
     | **PUT**  | `/users/update`  | Update profil user                    |
   
    a. Langkah Pengujian:
-    1. Buka Postman → Buat Collection baru: `USER API`
-    2. Tambahkan seluruh endpoint di atas.
-    3. Pada endpoint yang butuh token, tambahkan header:
-       ```
-       Authorization: Bearer <token_dari_login>
-       ```
-    4. Simpan Collection → klik kanan → *Publish Documentation*
-       Salin URL hasil publish dan masukkan ke README:
-       [Lihat Dokumentasi Postman di Sini] : (https://documenter.getpostman.com/view/49159863/2sB3QQK8AC)
+     * 1. Buka Postman → Buat Collection baru: `USER API`
+     * 2. Tambahkan seluruh endpoint di atas.
+     * 3. Pada endpoint yang butuh token, tambahkan header:
+         ```
+         Authorization: Bearer <token_dari_login>
+         ```
+      * 4. Simpan Collection → klik kanan → *Publish Documentation*
+           Salin URL hasil publish dan masukkan ke README:
+           [Lihat Dokumentasi Postman di Sini] : (https://documenter.getpostman.com/view/49159863/2sB3QQK8AC)
 
 ##  Teknologi yang Digunakan
     Node.js + Express.js,
