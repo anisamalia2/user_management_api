@@ -1,12 +1,20 @@
-import pool from "../config/db.js";
 import cloudinary from "../config/cloudinary.js";
 import streamifier from "streamifier";
+import {
+  getUsers as getUsersModel,
+  uploadAvatar as uploadAvatarModel,
+  updateUser as updateUserModel,
+} from "../models/userModel.js";
 
 export const getUsers = async (req, res) => {
-  const { rows } = await pool.query(
-    "SELECT id, username, email, role, avatar_url FROM users"
-  );
-  res.json(rows);
+  try {
+    const rows = await getUsersModel();
+    res.json(rows);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Failed to get users", error: err.message });
+  }
 };
 
 export const uploadAvatar = async (req, res) => {
@@ -28,10 +36,7 @@ export const uploadAvatar = async (req, res) => {
     const result = await uploadStream();
     const { id } = req.user;
 
-    await pool.query("UPDATE users SET avatar_url = $1 WHERE id = $2", [
-      result.secure_url,
-      id,
-    ]);
+    await uploadAvatarModel(result.secure_url, id);
 
     res.json({ message: "Avatar uploaded", url: result.secure_url });
   } catch (err) {
@@ -41,15 +46,12 @@ export const uploadAvatar = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
-    const { id } = req.user; // ID dari token
+    const { id } = req.user;
     const { username, email } = req.body;
 
-    const result = await pool.query(
-      "UPDATE users SET username = $1, email = $2, updated_at = NOW() WHERE id = $3 RETURNING id, username, email, updated_at",
-      [username, email, id]
-    );
+    const user = await updateUserModel(username, email, id);
 
-    res.json({ message: "Profile updated", user: result.rows[0] });
+    res.json({ message: "Profile updated", user });
   } catch (err) {
     res.status(500).json({ message: "Update failed", error: err.message });
   }
