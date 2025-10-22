@@ -134,6 +134,23 @@ CLOUDINARY_SECRET=your_api_secret
          Salin URL hasil publish dan masukkan ke README:
          [Lihat Dokumentasi Postman di Sini] : (https://documenter.getpostman.com/view/49159863/2sB3QQK8AC)
 
+  b. Upload Avatar ke Cloudinary
+  
+      Request:
+      POST /api/users/avatar
+      Header:
+      Authorization: Bearer <token>
+      Body (form-data):
+      Key: file
+      Value: (pilih file gambar dari komputer)
+      
+      Response:
+      ```json
+      {
+        "message": "Avatar uploaded", 
+        "url": "https://res.cloudinary.com/do8wvbl0q/image/upload/v1760888942/avatars/zyygwyzahb26t1atd6gm.jpg"
+      }
+
 ##  Teknologi yang Digunakan
     Node.js + Express.js,
     PostgreSQL (pg),
